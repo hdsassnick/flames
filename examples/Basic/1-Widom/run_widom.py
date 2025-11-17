@@ -1,4 +1,7 @@
 import os
+import sys
+
+sys.path.append('/home/felipe/PRs/flames')
 
 # Hide UserWarning and RuntimeWarning messages
 import warnings
@@ -39,7 +42,7 @@ adsorbate: ase.Atoms = read(AdsorbatePath)  # type: ignore
 
 Temperature = 298.0
 
-NSteps = 30000
+NSteps = 3000
 
 widom = Widom(
     model=model,

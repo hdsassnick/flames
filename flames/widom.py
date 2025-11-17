@@ -441,7 +441,7 @@ class Widom(BaseSimulator):
 
     def run(self, N: int) -> None:
 
-        self.logger.print_header()
+        self.logger.print_run_header()
 
         for iteration in tqdm(range(1, N + 1), disable=(self.out_file is None), desc="Widom Step"):
             self.step(iteration)
