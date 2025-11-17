@@ -97,7 +97,7 @@ jobs:
         if: always()
         run: |
           . .venv/bin/activate
-          pip uninstall -y mlp-adsorption
+          pip uninstall -y flames
 
   release:
     name: Release

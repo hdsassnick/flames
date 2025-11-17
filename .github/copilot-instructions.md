@@ -1,4 +1,4 @@
-# GitHub Copilot Instructions for MLP Adsorption
+# GitHub Copilot Instructions for FLAMES
 
 This repository is a specialized Python toolkit for computational chemistry researchers working with adsorption phenomena, machine learning potentials, and molecular simulations.
 
@@ -18,7 +18,7 @@ This package focuses on:
 - **PyMatGen** - Materials analysis and crystal structure handling
 - **NumPy/SciPy** - Numerical computations and scientific algorithms
 
-## Core Package Structure (mlp_adsorption/)
+## Core Package Structure (flames/)
 
 ### Primary Modules
 - `gcmc.py` - **GCMC class**: Grand Canonical Monte Carlo implementation with insertion/deletion/movement moves
@@ -148,8 +148,8 @@ make docs
 pytest tests/utilities_test.py -v
 
 # Format code
-black mlp_adsorption/
-isort mlp_adsorption/
+black flames/
+isort flames/
 ```
 
 When suggesting code, prioritize:
