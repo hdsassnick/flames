@@ -1,10 +1,6 @@
 # Overview
 
-This page gives a concise overview of the `flames` Python toolkit: repository layout, major modules, and primary capabilities. It's intended to help new contributors and users quickly understand where functionality lives and how to run common tasks.
-
-## Project summary
-
-`FLAMES` is a computational-chemistry toolkit focused on adsorption, Grand Canonical Monte Carlo (GCMC), Widom insertions, molecular dynamics (MD), and integration with classical and machine-learning potentials. It leverages ASE (`ase.Atoms`) as its core structure and calculator interface and provides `simulators` that can run GCMC and Widom simulations with various move types, thermostats, and barostats.
+`FLAMES` is a computational-chemistry toolkit focused on simulation adsorption by techiniques such as Grand Canonical Monte Carlo (GCMC), Widom insertions, and molecular dynamics (MD). The main motivation of its development is the integration with machine-learning potentials and other methods for calculating the energy such tight-binding and DFT. It leverages ASE as its core structure and calculator interface and provides `simulators` that can run GCMC, Widom, and MD simulations with various move types, thermostats, and barostats.
 
 ## Main capabilities
 
@@ -17,12 +13,12 @@ This page gives a concise overview of the `flames` Python toolkit: repository la
 ## Design & conventions
 
 - Structural objects are `ase.Atoms` throughout the codebase.
-- Energies use ASE defaults (eV), distances in Angstrom, temperatures in Kelvin.
-- Functions and classes use type hints; calculators conform to ASE `Calculator` interface.
-- Randomness: `numpy.random` is used; simulations can be made deterministic by setting seeds.
-- Long simulations use `tqdm` for progress bars and support both console and file logging.
+- Energies use ASE defaults (eV), distances in Angstrom, temperatures in Kelvin, and pressure in bar.
+- Functions and classes use type hints; calculators conform to ASE `Calculator` interface with energies in eV and forces in eV/Angstrom.
+- Randomness: `numpy.random` is used. The `Generator` from `numpy.random` is used for simulations so every movement can be made deterministic by setting one single random seed.
+- The simulations can use `tqdm` for progress bars and support both console and file logging.
 
-## Top-level layout
+## Top-level layout of the repository
 
 - `flames/` : Main package containing simulation code and utilities.
 - `examples/` : Example scripts (Widom, rigid GCMC, MD+GCMC, calculators examples).
@@ -92,10 +88,3 @@ pytest -q
 - Follow existing style and patterns when adding modules — keep changes minimal and focused.
 - Add unit tests in `tests/` for any new utility or simulator behavior.
 - When adding expensive calculator integrations, prefer mocking in tests.
-
----
-
-If you want, I can:
-- add this file to the Sphinx `toctree` (in `docs/source/index.rst`) so it appears in the docs;
-- expand the usage section with a fully runnable minimal example and a `requirements.txt` snippet;
-- run the test suite locally and report failures.

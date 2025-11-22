@@ -8,18 +8,6 @@
 :class: only-dark
 ```
 
-Welcome to FLAMES documentation!
-================================
-
-FLAMES is a general purpose adsorption simulation toolbox built around the Atomic Simulation Environment (ASE), which provides tools for molecular simulations and adsorption studies using machine learning potentials, classical force fields, and other advanced techniques.
-
-Here you will find tutorials and examples on how to install and use FLAMES to run different adsorption simulations on porous structures. These are aimed for new users and people with more experience on molecular modeling.
-
-First steps
------------
-
-If you are not familiar with Python or molecular simulations, maybe it is best to start here, otherwise you can just skip and go to the next sections.
-
 ```{toctree}
 :maxdepth: 2
 :hidden:
@@ -57,9 +45,23 @@ License <https://raw.githubusercontent.com/lipelopesoliveira/flames/main/LICENSE
 GitHub Repository <https://github.com/lipelopesoliveira/flames>
 ```
 
-## Indices and tables
+# Welcome to FLAMES documentation!
 
-```{eval-rst}
-* :ref:`genindex`
-* :ref:`modindex`
-```
+FLAMES is a general purpose adsorption simulation toolbox built around the Atomic Simulation Environment (ASE), which provides tools for molecular simulations and adsorption studies using machine learning potentials, classical force fields, and other advanced techniques.
+
+Here you will find tutorials and examples on how to install and use FLAMES to run different adsorption simulations on porous structures. These are aimed for new users and people with more experience on molecular modeling.
+
+## First steps
+
+If you are not familiar with Python or molecular simulations, maybe it is best to start here, otherwise you can just skip and go to the next sections.
+
+- [Installation](installation): Instructions on how to install FLAMES and its dependencies.
+- [Overview](overview): A brief overview of FLAMES features, code organization and capabilities.
+
+## Tutorials
+
+The tutorials section contains step-by-step guides on how to use FLAMES for different types of simulations. We recommend starting with the basic tutorials and then moving on to more advanced topics as you become more comfortable with the code.
+
+### Basic
+
+- [Widom Insertion Method](tutorials/basic_widom): A tutorial on how to perform Widom insertion simulations using FLAMES.

@@ -258,11 +258,7 @@
         <article role="main" id="furo-main-content">
           <section id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h1>
-<p>This page gives a concise overview of the <code class="docutils literal notranslate"><span class="pre">flames</span></code> Python toolkit: repository layout, major modules, and primary capabilities. It’s intended to help new contributors and users quickly understand where functionality lives and how to run common tasks.</p>
-<section id="project-summary">
-<h2>Project summary<a class="headerlink" href="#project-summary" title="Link to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">FLAMES</span></code> is a computational-chemistry toolkit focused on adsorption, Grand Canonical Monte Carlo (GCMC), Widom insertions, molecular dynamics (MD), and integration with classical and machine-learning potentials. It leverages ASE (<code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code>) as its core structure and calculator interface and provides <code class="docutils literal notranslate"><span class="pre">simulators</span></code> that can run GCMC and Widom simulations with various move types, thermostats, and barostats.</p>
-</section>
+<p><code class="docutils literal notranslate"><span class="pre">FLAMES</span></code> is a computational-chemistry toolkit focused on simulation adsorption by techiniques such as Grand Canonical Monte Carlo (GCMC), Widom insertions, and molecular dynamics (MD). The main motivation of its development is the integration with machine-learning potentials and other methods for calculating the energy such tight-binding and DFT. It leverages ASE as its core structure and calculator interface and provides <code class="docutils literal notranslate"><span class="pre">simulators</span></code> that can run GCMC, Widom, and MD simulations with various move types, thermostats, and barostats.</p>
 <section id="main-capabilities">
 <h2>Main capabilities<a class="headerlink" href="#main-capabilities" title="Link to this heading">¶</a></h2>
 <ul class="simple">
@@ -277,14 +273,14 @@
 <h2>Design &amp; conventions<a class="headerlink" href="#design-conventions" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Structural objects are <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code> throughout the codebase.</p></li>
-<li><p>Energies use ASE defaults (eV), distances in Angstrom, temperatures in Kelvin.</p></li>
-<li><p>Functions and classes use type hints; calculators conform to ASE <code class="docutils literal notranslate"><span class="pre">Calculator</span></code> interface.</p></li>
-<li><p>Randomness: <code class="docutils literal notranslate"><span class="pre">numpy.random</span></code> is used; simulations can be made deterministic by setting seeds.</p></li>
-<li><p>Long simulations use <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> for progress bars and support both console and file logging.</p></li>
+<li><p>Energies use ASE defaults (eV), distances in Angstrom, temperatures in Kelvin, and pressure in bar.</p></li>
+<li><p>Functions and classes use type hints; calculators conform to ASE <code class="docutils literal notranslate"><span class="pre">Calculator</span></code> interface with energies in eV and forces in eV/Angstrom.</p></li>
+<li><p>Randomness: <code class="docutils literal notranslate"><span class="pre">numpy.random</span></code> is used. The <code class="docutils literal notranslate"><span class="pre">Generator</span></code> from <code class="docutils literal notranslate"><span class="pre">numpy.random</span></code> is used for simulations so every movement can be made deterministic by setting one single random seed.</p></li>
+<li><p>The simulations can use <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> for progress bars and support both console and file logging.</p></li>
 </ul>
 </section>
-<section id="top-level-layout">
-<h2>Top-level layout<a class="headerlink" href="#top-level-layout" title="Link to this heading">¶</a></h2>
+<section id="top-level-layout-of-the-repository">
+<h2>Top-level layout of the repository<a class="headerlink" href="#top-level-layout-of-the-repository" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">flames/</span></code> : Main package containing simulation code and utilities.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">examples/</span></code> : Example scripts (Widom, rigid GCMC, MD+GCMC, calculators examples).</p></li>
@@ -356,13 +352,6 @@ pytest<span class="w"> </span>-q
 <li><p>Add unit tests in <code class="docutils literal notranslate"><span class="pre">tests/</span></code> for any new utility or simulator behavior.</p></li>
 <li><p>When adding expensive calculator integrations, prefer mocking in tests.</p></li>
 </ul>
-<hr class="docutils" />
-<p>If you want, I can:</p>
-<ul class="simple">
-<li><p>add this file to the Sphinx <code class="docutils literal notranslate"><span class="pre">toctree</span></code> (in <code class="docutils literal notranslate"><span class="pre">docs/source/index.rst</span></code>) so it appears in the docs;</p></li>
-<li><p>expand the usage section with a fully runnable minimal example and a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> snippet;</p></li>
-<li><p>run the test suite locally and report failures.</p></li>
-</ul>
 </section>
 </section>
 
@@ -429,10 +418,9 @@ pytest<span class="w"> </span>-q
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Overview</a><ul>
-<li><a class="reference internal" href="#project-summary">Project summary</a></li>
 <li><a class="reference internal" href="#main-capabilities">Main capabilities</a></li>
 <li><a class="reference internal" href="#design-conventions">Design &amp; conventions</a></li>
-<li><a class="reference internal" href="#top-level-layout">Top-level layout</a></li>
+<li><a class="reference internal" href="#top-level-layout-of-the-repository">Top-level layout of the repository</a></li>
 <li><a class="reference internal" href="#key-modules-in-flames">Key modules (in <code class="docutils literal notranslate"><span class="pre">flames/</span></code>)</a></li>
 <li><a class="reference internal" href="#data-and-examples">Data and examples</a></li>
 <li><a class="reference internal" href="#testing-and-docs">Testing and docs</a></li>
