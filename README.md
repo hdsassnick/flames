@@ -4,6 +4,8 @@
 # FLAMES - Flexible Lattice Adsorption by Monte Carlo Engine Simulation
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![This project supports Python 3.10+](https://img.shields.io/badge/Python-3.10+-blue.svg?logo=python&logoColor=white)](https://python.org/downloads)
+[![Main](https://github.com/lipelopesoliveira/flames/actions/workflows/main.yml/badge.svg)](https://github.com/lipelopesoliveira/flames/actions/workflows/main.yml)
 
 The FLAMES is a general purpose adsorption simulation toolbox built around the Atomic Simulation Environment (ASE), which provides tools for molecular simulations and adsorption studies using machine learning potentials, classical force fields, and other advanced techniques.
 
