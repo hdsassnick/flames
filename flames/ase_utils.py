@@ -95,7 +95,7 @@ def crystalOptimization(
     atoms.calc = calculator
 
     if fix_symmetry:
-        atoms.set_constraint([FixSymmetry(atoms)])
+        atoms.set_constraint([FixSymmetry(atoms, symprec=symm_tol)])
 
     if opt_cell:
         ecf = FrechetCellFilter(
@@ -222,9 +222,7 @@ def crystalOptimization(
     Space Group Number: {}
     Space Group Symbol: {}
     Lattice type: {}
-    """.format(
-                    symm.number, symm.international, atoms.cell.get_bravais_lattice().longname
-                ),
+    """.format(symm.number, symm.international, atoms.cell.get_bravais_lattice().longname),
                 file=out_file,
                 flush=True,
             )
@@ -300,9 +298,7 @@ def nVT_Berendsen(
         Time Constant (taut): {:.2f} fs
 
 ===========================================================================
-""".format(
-        temperature, time_step, num_md_steps, output_interval, movie_interval, taut
-    )
+""".format(temperature, time_step, num_md_steps, output_interval, movie_interval, taut)
 
     print(header, file=out_file, flush=True)
 
