@@ -439,8 +439,13 @@ Simulation duration: {datetime.datetime.now() - self.sim.start_time}
 
 
 class TMMCLogger(BaseLogger):
+    """
+    Handles all logging and printing for a TMMC simulation.
+    Separates the presentation logic from the simulation logic.
+    """
 
     def print_run_header(self):
+        """Prints the header for the main TMMC loop."""
         header = """
 ===========================================================================
 
@@ -454,6 +459,7 @@ Iteration  |  Number of  |    Tot En.   | Del. Energy  | Ins. Energy  |  Time
         self._print(header)
 
     def print_step_info(self, step, del_energy, ins_energy, step_time):
+        """Prints info on one TMMC step."""
         line_str = "{:^11}|{:^13}|{:>13.4f} |{:>13.4f} |{:>13.4f} |{:7.2f}"
         self._print(
             line_str.format(

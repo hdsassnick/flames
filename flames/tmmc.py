@@ -18,6 +18,74 @@ from flames.operations import (
 
 
 class TMMC(BaseSimulator):
+    """
+    Base class for transition matrix Monte Carlo (TMMC) simulations using ASE.
+
+    This class implements TMMC deletion/insertion moves, recording the
+    deletion/insertion energies of the adsorbate.
+
+    :param model:
+        The calculator to use for energy calculations. Can be any ASE-compatible calculator.
+        The output of the calculator should be in eV.
+    :type model: ase.calculators.calculator.Calculator
+
+    :param framework_atoms:
+        The framework structure as an ASE Atoms object.
+    :type framework_atoms: ase.Atoms
+
+    :param adsorbate_atoms:
+        The adsorbate structure as an ASE Atoms object.
+    :type adsorbate_atoms: ase.Atoms
+
+    :param temperature:
+        Temperature of the ideal reservoir in Kelvin.
+    :type temperature: float
+
+    :param pressure:
+        Pressure of the ideal reservoir in Pascal.
+    :type pressure: float
+
+    :param device:
+        Device to run the simulation on, e.g., ``'cpu'`` or ``'cuda'``.
+    :type device: str
+
+    :param vdw_radii:
+        Van der Waals radii for the atoms in the framework and adsorbate.
+        Should be an array of the same length as the number of atomic numbers in ASE.
+    :type vdw_radii: np.ndarray
+
+    :param vdw_factor:
+        Factor to scale the Van der Waals radii. Default is ``0.6``.
+    :type vdw_factor: float, optional
+
+    :max_overlap_tries:
+        Maximum tries for the insertion move. Default is ``100``.
+    :type max_overlap_tries: int, optional
+
+    :param save_frequency:
+        Frequency at which to save the simulation state and results. Default is ``100``.
+    :type save_frequency: int, optional
+
+    :param output_to_file:
+        If ``True``, writes the output to a file named ``output_{temperature}_{pressure}.out`` in the ``results`` directory. Default is ``True``.
+    :type output_to_file: bool, optional
+
+    :param output_folder:
+        Folder to save the output files. If ``None``, a folder named ``results_<T>_<P>`` will be created.
+    :type output_folder: str or None, optional
+
+    :param debug:
+        If ``True``, prints detailed debug information during the simulation. Default is ``False``.
+    :type debug: bool, optional
+
+    :param random_seed:
+        Random seed for reproducibility. Default is ``None`` and will generate a random seed automatically if not provided.
+    :type random_seed: int or None, optional
+
+    :param cutoff_radius:
+        Interaction potential cut-off radius used to estimate the minimum unit cell. Default is ``6.0``.
+    :type cutoff_radius: float, optional
+    """
 
     def __init__(
         self,
@@ -37,9 +105,11 @@ class TMMC(BaseSimulator):
         debug: bool = False,
         random_seed: int | None = None,
         cutoff_radius: float = 6.0,
-    ):
-        # if output_folder is None:
-        #    output_folder = f"results_{temperature:.2f}_{n_adsorbates:04d}"
+    ) -> None:
+        """
+        Initialize the transition matrix Monte Carlo (TMMC) simulation.
+        """
+
         super().__init__(
             model=model,
             framework_atoms=framework_atoms,
@@ -271,8 +341,8 @@ class TMMC(BaseSimulator):
 
         Returns
         -------
-        bool
-            True if the insertion was accepted, False otherwise.
+        deltaE
+            Insertion energy.
         """
         for _ in range(self.max_overlap_tries):
             atoms_trial = random_mol_insertion(
@@ -301,6 +371,16 @@ class TMMC(BaseSimulator):
         raise ValueError("Could not insert molecule.")
 
     def try_deletion(self):
+        """
+        Try to delete an adsorbate molecule from the framework.
+        This method randomly selects an adsorbate molecule and try to apply the deletion.
+
+        Returns
+        -------
+        deltaE
+            Deletion energy.
+        """
+
         # Randomly select an adsorbate molecule to delete
         i_ads = self.rnd_generator.integers(low=0, high=self.n_adsorbates, size=1)[0]
 
@@ -329,6 +409,8 @@ class TMMC(BaseSimulator):
         return deltaE
 
     def run(self, N: int) -> None:
+        """Run the transition matrix Monte Carlo simulation for N iterations."""
+
         self.logger.print_run_header()
         for iteration in tqdm(range(1, N + 1), disable=(self.out_file is None), desc="TMMC Step"):
             step_time_start = datetime.datetime.now()
