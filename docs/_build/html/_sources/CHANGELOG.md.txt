@@ -1,6 +1,22 @@
 # Changelog
 
-## v[0.4.5] - 2025-12-08 (Unreleased)
+## v[0.4.5] - YYYY-MM-DD (Unreleased)
+
+### New Features 🎉
+
+- Added new `TMMC` class to perform transition matrix Monte Carlo simulations.
+
+### Fixed 🐛
+
+### Enhanced ✨
+
+- Added `**kwargs`, exposing the interface to the underlying molecular dynamics classes of ase, and some other parameters to the `nvt` and `npt` functions of the Monte Carlo simulation classes to allow adjustments of the previously hard-coded parameters.
+
+### Documentation 📖
+
+### Removed 🗑️
+
+## v[0.4.5] - 2025-12-08
 
 ### New Features 🎉
 

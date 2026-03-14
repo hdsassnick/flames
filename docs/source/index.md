@@ -20,11 +20,12 @@ overview
 ```{toctree}
 :maxdepth: 2
 :hidden:
-:caption: Input Description
+:caption: Simulator Description
 
 input_description/base_simulator
 input_description/gcmc
 input_description/widom
+input_description/tmmc
 ```
 
 ```{toctree}
@@ -33,6 +34,7 @@ input_description/widom
 :caption: Tutorials: Basic
 
 tutorials/basic_widom
+tutorials/basic_gcmc
 ```
 
 ```{toctree}
