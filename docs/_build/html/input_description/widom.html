@@ -8,7 +8,7 @@
         <link rel="prefetch" href="../_static/logo-dark-mode.png" as="image">
 
     <link rel="shortcut icon" href="../_static/favicon.ico"><!-- Generated with Sphinx 9.1.0 and Furo 2025.09.25 -->
-        <title>Widom Class - FLAMES v0.4.5A</title>
+        <title>Widom Class - FLAMES v0.4.7</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -165,7 +165,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">FLAMES v0.4.5A</div></a>
+      <a href="../index.html"><div class="brand">FLAMES v0.4.7</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -202,17 +202,25 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing FLAMES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials: Basic</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_widom.html">Widom insertion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_gcmc.html">GCMC Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_restart.html">Restarting Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_isotherm.html">GCMC Adsorption Isotherm</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Theoretical Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../theoretical_background/widom.html">Widom test particle insertion method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theoretical_background/gcmc.html">Grand-Canonical Monte Carlo (GCMC) Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theoretical_background/tmmc.html">Transition Matrix Monte Carlo (TMMC) Simulation</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Simulator Description</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="base_simulator.html">BaseSimulator Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gcmc.html">GCMC Class</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Widom Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tmmc.html">TMMC Class</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Tutorials: Basic</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_widom.html">Widom insertion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_gcmc.html">GCMC Simulation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
@@ -263,7 +271,7 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">Widom</span></code> class serves as the main interface for handling Widom insertion simulation logic.</p>
 <dl class="py class">
 <dt class="sig sig-object py">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">flames.widom.</span></span><span class="sig-name descname"><span class="pre">Widom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">framework_atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adsorbate_atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vdw_radii</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vdw_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_overlap_tries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_deltaE</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.555</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_snapshots</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_rejected</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_to_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">automatic_supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/flames/widom.html#Widom"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">flames.widom.</span></span><span class="sig-name descname"><span class="pre">Widom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">framework_atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adsorbate_atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vdw_radii</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">framework_energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adsorbate_energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vdw_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_overlap_tries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_deltaE</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.555</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_snapshots</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_rejected</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_to_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">automatic_supercell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/flames/widom.html#Widom"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSimulator</span></code></p>
 <p>Base class for Widom insertion method using ASE.</p>
 <p>This class performs the Widom insertion method to calculate the enthalpy of adsorption and Henry coefficient of an adsorbate in a framework.</p>
@@ -276,6 +284,8 @@
 <li><p><strong>temperature</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Temperature of the ideal reservoir in Kelvin.</p></li>
 <li><p><strong>model</strong> (<em>ase.calculators.calculator.Calculator</em>) – ASE-compatible calculator for energy calculations.</p></li>
 <li><p><strong>vdw_radii</strong> (<em>np.ndarray</em>) – Van der Waals radii of the atoms in the framework and adsorbate.</p></li>
+<li><p><strong>framework_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Pre-calculated potential energy of the empty framework in eV. If not provided, it will be calculated during initialization.</p></li>
+<li><p><strong>adsorbate_energy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em> or </em><em>None</em><em>, </em><em>optional</em>) – Pre-calculated potential energy of the adsorbate molecule in eV. If not provided, it will be calculated during initialization.</p></li>
 <li><p><strong>vdw_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – Factor to scale the Van der Waals radii. Default is <code class="docutils literal notranslate"><span class="pre">0.6</span></code>.</p></li>
 <li><p><strong>max_overlap_tries</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of tries to insert/move a molecule without overlap. Default is <code class="docutils literal notranslate"><span class="pre">100</span></code>.</p></li>
 <li><p><strong>max_deltaE</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a><em>, </em><em>optional</em>) – Maximum energy difference (in eV) to consider for acceptance criteria.
@@ -312,10 +322,10 @@ This is used to avoid overflow due to problematic calculations. Default is <code
 <dd><p>Get the ideal supercell dimensions based on the cutoff radius.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A list of three integers representing the number of unit cells in each dimension.</p>
+<dd class="field-odd"><p>An array of three integers representing the number of unit cells in each dimension.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>]</p>
+<dd class="field-even"><p>np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -595,7 +605,7 @@ based on the acceptance criteria.</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=0190e511"></script>
+</div><script src="../_static/documentation_options.js?v=a78bb796"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

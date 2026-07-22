@@ -1,6 +1,6 @@
 # Changelog
 
-## v[0.4.7] - 2026-04-14 (Unreleased)
+## v[0.4.7] - 2026-07-22
 
 ### New Features 🎉
 
@@ -21,6 +21,8 @@
 - Fixed the LennardJones parameters for the `UFF` force field.
 
 ### Documentation 📖
+
+- Improvements in the documentation.
 
 ### Removed 🗑️
 

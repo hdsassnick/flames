@@ -18,7 +18,7 @@ Setting the stage
 
 In this example we will evaluate the Mg-MOF-74, a material well-known for having adsorption of CO :sub:`2` on Open-Metal sites, which is very hard to model with classical force fields and usually require electronic structure methods, such DFT, to describe the interaction properly. 
 
-On the ``flames/examples/Basic/2-Rigid_GCMC`` folder you will find the ``cif`` file for the Mg-MOF-74 [1]_. The simulation will be executed with the machine learning potential MACE [2]_, using the ``medium-0b2`` pre-trained foundation model with ``D3(0)`` dispersion correction. 
+On the ``flames/examples/Basic/3-Rigid_GCMC`` folder you will find the ``cif`` file for the Mg-MOF-74 [1]_. The simulation will be executed with the machine learning potential MACE [2]_, using the ``medium-0b2`` pre-trained foundation model with ``D3(0)`` dispersion correction. 
 
 .. warning:: This model is used here just as an example, you should look carefully into the mace documentation to undestand how the potential work and which one is the best for your specific case.
 

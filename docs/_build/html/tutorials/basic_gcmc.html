@@ -3,12 +3,12 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Changelog" href="../CHANGELOG.html"><link rel="prev" title="Widom insertion" href="basic_widom.html">
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Restarting Simulations" href="basic_restart.html"><link rel="prev" title="Widom insertion" href="basic_widom.html">
         <link rel="prefetch" href="../_static/logo-light-mode.png" as="image">
         <link rel="prefetch" href="../_static/logo-dark-mode.png" as="image">
 
     <link rel="shortcut icon" href="../_static/favicon.ico"><!-- Generated with Sphinx 9.1.0 and Furo 2025.09.25 -->
-        <title>GCMC Simulation - FLAMES v0.4.5A</title>
+        <title>GCMC Simulation - FLAMES v0.4.7</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -165,7 +165,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">FLAMES v0.4.5A</div></a>
+      <a href="../index.html"><div class="brand">FLAMES v0.4.7</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -202,17 +202,25 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing FLAMES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials: Basic</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basic_widom.html">Widom insertion</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">GCMC Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_restart.html">Restarting Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_isotherm.html">GCMC Adsorption Isotherm</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Theoretical Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../theoretical_background/widom.html">Widom test particle insertion method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theoretical_background/gcmc.html">Grand-Canonical Monte Carlo (GCMC) Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theoretical_background/tmmc.html">Transition Matrix Monte Carlo (TMMC) Simulation</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Simulator Description</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../input_description/base_simulator.html">BaseSimulator Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../input_description/gcmc.html">GCMC Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../input_description/widom.html">Widom Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../input_description/tmmc.html">TMMC Class</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Tutorials: Basic</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="basic_widom.html">Widom insertion</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">GCMC Simulation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
@@ -271,7 +279,7 @@ During these simulations, the porous material is typically modeled as a rigid ho
 <section id="setting-the-stage">
 <h2>Setting the stage<a class="headerlink" href="#setting-the-stage" title="Link to this heading">¶</a></h2>
 <p>In this example we will evaluate the Mg-MOF-74, a material well-known for having adsorption of CO <sub>2</sub> on Open-Metal sites, which is very hard to model with classical force fields and usually require electronic structure methods, such DFT, to describe the interaction properly.</p>
-<p>On the <code class="docutils literal notranslate"><span class="pre">flames/examples/Basic/2-Rigid_GCMC</span></code> folder you will find the <code class="docutils literal notranslate"><span class="pre">cif</span></code> file for the Mg-MOF-74 <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. The simulation will be executed with the machine learning potential MACE <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, using the <code class="docutils literal notranslate"><span class="pre">medium-0b2</span></code> pre-trained foundation model with <code class="docutils literal notranslate"><span class="pre">D3(0)</span></code> dispersion correction.</p>
+<p>On the <code class="docutils literal notranslate"><span class="pre">flames/examples/Basic/3-Rigid_GCMC</span></code> folder you will find the <code class="docutils literal notranslate"><span class="pre">cif</span></code> file for the Mg-MOF-74 <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. The simulation will be executed with the machine learning potential MACE <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, using the <code class="docutils literal notranslate"><span class="pre">medium-0b2</span></code> pre-trained foundation model with <code class="docutils literal notranslate"><span class="pre">D3(0)</span></code> dispersion correction.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This model is used here just as an example, you should look carefully into the mace documentation to undestand how the potential work and which one is the best for your specific case.</p>
@@ -742,12 +750,12 @@ Simulation duration: 6:32:28.669883
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../CHANGELOG.html">
+          <a class="next-page" href="basic_restart.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Changelog</div>
+                <div class="title">Restarting Simulations</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -824,7 +832,7 @@ Simulation duration: 6:32:28.669883
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=0190e511"></script>
+</div><script src="../_static/documentation_options.js?v=a78bb796"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

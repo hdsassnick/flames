@@ -20,21 +20,33 @@ overview
 ```{toctree}
 :maxdepth: 2
 :hidden:
+:caption: Tutorials: Basic
+
+tutorials/basic_widom
+tutorials/basic_gcmc
+tutorials/basic_restart
+tutorials/basic_isotherm
+```
+
+```{toctree}
+:maxdepth: 2
+:hidden:
+:caption: Theoretical Background
+
+theoretical_background/widom
+theoretical_background/gcmc
+theoretical_background/tmmc
+```
+
+```{toctree}
+:maxdepth: 2
+:hidden:
 :caption: Simulator Description
 
 input_description/base_simulator
 input_description/gcmc
 input_description/widom
 input_description/tmmc
-```
-
-```{toctree}
-:maxdepth: 2
-:hidden:
-:caption: Tutorials: Basic
-
-tutorials/basic_widom
-tutorials/basic_gcmc
 ```
 
 ```{toctree}
@@ -47,7 +59,7 @@ License <https://raw.githubusercontent.com/lipelopesoliveira/flames/main/LICENSE
 GitHub Repository <https://github.com/lipelopesoliveira/flames>
 ```
 
-# Welcome to FLAMES documentation!
+# Welcome to FLAMES documentation
 
 FLAMES is a general purpose adsorption simulation toolbox built around the Atomic Simulation Environment (ASE), which provides tools for molecular simulations and adsorption studies using machine learning potentials, classical force fields, and other advanced techniques.
 

@@ -3,12 +3,12 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="GCMC Class" href="gcmc.html"><link rel="prev" title="Overview" href="../overview.html">
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="GCMC Class" href="gcmc.html"><link rel="prev" title="Transition Matrix Monte Carlo (TMMC) Simulation" href="../theoretical_background/tmmc.html">
         <link rel="prefetch" href="../_static/logo-light-mode.png" as="image">
         <link rel="prefetch" href="../_static/logo-dark-mode.png" as="image">
 
     <link rel="shortcut icon" href="../_static/favicon.ico"><!-- Generated with Sphinx 9.1.0 and Furo 2025.09.25 -->
-        <title>BaseSimulator Class - FLAMES v0.4.5A</title>
+        <title>BaseSimulator Class - FLAMES v0.4.7</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -165,7 +165,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">FLAMES v0.4.5A</div></a>
+      <a href="../index.html"><div class="brand">FLAMES v0.4.7</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -202,17 +202,25 @@
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing FLAMES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials: Basic</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_widom.html">Widom insertion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_gcmc.html">GCMC Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_restart.html">Restarting Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_isotherm.html">GCMC Adsorption Isotherm</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Theoretical Background</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../theoretical_background/widom.html">Widom test particle insertion method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theoretical_background/gcmc.html">Grand-Canonical Monte Carlo (GCMC) Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theoretical_background/tmmc.html">Transition Matrix Monte Carlo (TMMC) Simulation</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Simulator Description</span></p>
 <ul class="current">
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">BaseSimulator Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gcmc.html">GCMC Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="widom.html">Widom Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tmmc.html">TMMC Class</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Tutorials: Basic</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_widom.html">Widom insertion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials/basic_gcmc.html">GCMC Simulation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
@@ -317,10 +325,10 @@ Only used if <code class="docutils literal notranslate"><span class="pre">critic
 <dd><p>Get the ideal supercell dimensions based on the cutoff radius.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A list of three integers representing the number of unit cells in each dimension.</p>
+<dd class="field-odd"><p>An array of three integers representing the number of unit cells in each dimension.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>]</p>
+<dd class="field-even"><p>np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -472,14 +480,14 @@ Can be one of “iso_shape”, “aniso_shape”, or “aniso_flex”.</p></li>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../overview.html">
+          <a class="prev-page" href="../theoretical_background/tmmc.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Overview</div>
+                <div class="title">Transition Matrix Monte Carlo (TMMC) Simulation</div>
                 
               </div>
             </a>
@@ -514,7 +522,7 @@ Can be one of “iso_shape”, “aniso_shape”, or “aniso_flex”.</p></li>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=0190e511"></script>
+</div><script src="../_static/documentation_options.js?v=a78bb796"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
