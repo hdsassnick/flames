@@ -139,3 +139,12 @@ gcmc.save_results()
 You can find example scripts in the [examples](https://github.com/lipelopesoliveira/flames/tree/main/examples) directory. These scripts demonstrate how to use the FLAMES package for various tasks, such as running GCMC simulations and performing Widom insertion tests, etc.
 
 On the [online documentation](https://lipelopesoliveira.github.io/flames/docs/_build/html/index.html) you can find more information about the examples.
+
+## Citation
+
+If you find **flames** useful in your research, please consider citing the following paper:
+
+> F. L. Oliveira, H-D Saßnick, and G. Maurin,
+> _FLAMES – A flexible and extensible code for Monte Carlo simulations of nanoporous materials_
+> ChemRxiv 2026
+> _10.26434/chemrxiv.15004623/v1_ [DOI](https://chemrxiv.org/doi/full/10.26434/chemrxiv.15004623/v1)
