@@ -100,7 +100,7 @@ def get_perpendicular_lengths(cell: Cell) -> tuple[float, float, float]:
     return cx, cy, cz
 
 
-def calculate_unit_cells(cell: Cell, cutoff: float = 12.6) -> list[int]:
+def calculate_unit_cells(cell: Cell, cutoff: float = 12.6) -> np.ndarray:
     """
     Calculate the number of unit cell repetitions so that all supercell lengths are larger than
     twice the interaction potential cut-off radius.
@@ -120,14 +120,14 @@ def calculate_unit_cells(cell: Cell, cutoff: float = 12.6) -> list[int]:
 
     Returns
     -------
-    supercell : list[int]
-        (3,1) list containg the number of repeating units in `x`, `y`, `z` directions.
+    supercell : np.ndarray
+        (3,1) array containing the number of repeating units in `x`, `y`, `z` directions.
     """
 
     cx, cy, cz = get_perpendicular_lengths(cell)
 
     # Calculate UnitCells array
-    supercell = [int(i) for i in np.ceil(2.0 * cutoff / np.array([cx, cy, cz]))]
+    supercell = np.array([int(i) for i in np.ceil(2.0 * cutoff / np.array([cx, cy, cz]))])
 
     return supercell
 
@@ -333,7 +333,16 @@ def read_cif(file_name: str, partial_charges_tag: str = "_atom_site_charge") -> 
     atom_site_frac = np.array([atom_site_fract_x, atom_site_fract_y, atom_site_fract_z]).T
 
     try:
+        atom_site_label = list(cif.find_values("_atom_site_label"))
+    except Exception:
+        atom_site_label = atom_site_type_symbol
+
+    try:
         partial_charges = np.array(cif.find_values(partial_charges_tag)).astype(float)
+
+        if len(partial_charges) == 0:
+            partial_charges = np.zeros(len(atom_site_type_symbol))
+
     except Exception:
         partial_charges = np.zeros(len(atom_site_type_symbol))
 
@@ -342,5 +351,7 @@ def read_cif(file_name: str, partial_charges_tag: str = "_atom_site_charge") -> 
     )
 
     struc.set_initial_charges(partial_charges)
+
+    struc.arrays["labels"] = np.array(atom_site_label, dtype=object)
 
     return struc

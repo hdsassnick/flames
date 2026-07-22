@@ -11,10 +11,7 @@ from tqdm import tqdm
 from flames import VERSION
 from flames.base_simulator import BaseSimulator
 from flames.logger import TMMCLogger
-from flames.operations import (
-    check_overlap,
-    random_mol_insertion,
-)
+from flames.operations import check_overlap, random_mol_insertion
 
 
 class TMMC(BaseSimulator):

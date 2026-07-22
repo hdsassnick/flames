@@ -1,16 +1,43 @@
 # Changelog
 
-## v[0.4.5] - YYYY-MM-DD (Unreleased)
+## v[0.4.7] - 2026-04-14 (Unreleased)
 
 ### New Features 🎉
 
-- Added new `TMMC` class to perform transition matrix Monte Carlo simulations.
+### Enhanced ✨
+
+- Changed the `BaseSimulator` class to multiply the total energy by the supercell size when calculating the adsorption energy. This change ensures that the adsorption energy is correctly calculated based on the total energy of the system, which includes contributions from all atoms in the supercell.
+- Created a new `CustomLennardJones` calculator based on JIT for improved performance in calculating Lennard-Jones interactions.
+- Created a new `EwaldSum` calculator based on JIT for improved performance in calculating electrostatic interactions.
+- Add workarounds for loading and saving labels in ASE's Trajectory since it does not support custom arrays. Now the labels are saved in the `info` attribute of the Trajectory and loaded back into the Atoms object when reading the trajectory.
+- Create new `CustomGNP` calculator to implemente the Generalized Nonbonded Potential (GNP) based on the work of Luo and Goddard III, J. Chem. Theory Comput. 2025, 21, 1, 499-515.
+- Now a message is printed when the `GCMC` tries to restart a simulation from a trajectory file that is empty or corrupted. This message informs the user that the last state of the simulation cannot be loaded, and that the simulation will start from scratch.
 
 ### Fixed 🐛
 
+- Fixed a bug in the MD classes that was causing the `output_interval` and `movie_interval` parameters to be mixed up, resulting in incorrect logging intervals for the MD simulations. Now the `output_interval` is correctly used for logging the MD simulation data, while the `movie_interval` is used for controlling the frequency of snapshot saving.
+- Fixed a bug in the `BaseSimulator` class where the `set_state` method was not properly updating the current system state, which could lead to inconsistencies in the simulation. Now the `set_state` method correctly updates the current system state with the provided state, ensuring that the simulation runs with the correct configuration.
+- Improve behavior when the cif file does not have partial charges.
+- Fixed the LennardJones parameters for the `UFF` force field.
+
+### Documentation 📖
+
+### Removed 🗑️
+
+## v[0.4.6] - 2026-04-14
+
+### New Features 🎉
+
+- Core implemenation of the `TMMC` class allowing to run transition matrix Monte Carlo insertion/deletion moves on-top of a `GCMC` or MD simulation.
+- Added tests for the `Widom` and the `GCMC` class, likewise to the `TMMC` class. With those tests the overall test coverage increases to 58%.
+
 ### Enhanced ✨
 
-- Added `**kwargs`, exposing the interface to the underlying molecular dynamics classes of ase, and some other parameters to the `nvt` and `npt` functions of the Monte Carlo simulation classes to allow adjustments of the previously hard-coded parameters.
+- Added `**kwargs` to expose the interface of the underlying `ase` MD classes allowing the user to pass on parameters via that overwrite the default values.
+- Added the parameters `output_interval` and `movie_interval` to decouple those parameters from the `save_every` attribute.
+- Added the `set_momenta` parameter to switch on/off the initialization of atomic momenta based on the input temperature.
+
+### Fixed 🐛
 
 ### Documentation 📖
 

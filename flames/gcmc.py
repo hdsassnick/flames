@@ -27,7 +27,7 @@ class GCMC(BaseSimulator):
     """
     Base class for Grand Canonical Monte Carlo (GCMC) simulations using ASE.
 
-    This class employs Monte Carlo simulations under the grand canonical ensemble (:math:`\mu VT`) to study the adsorption of molecules in a framework material.
+    This class employs Monte Carlo simulations under the grand canonical ensemble (:math:`μVT`) to study the adsorption of molecules in a framework material.
     It allows for movements such as insertion, deletion, translation, and rotation of adsorbate molecules within the framework.
 
     Currently, it supports any ASE-compatible calculator for energy calculations.
@@ -70,6 +70,14 @@ class GCMC(BaseSimulator):
     :param vdw_factor:
         Factor to scale the Van der Waals radii. Default is ``0.6``.
     :type vdw_factor: float, optional
+
+    :param framework_energy:
+        Pre-calculated potential energy of the empty framework in eV. If not provided, it will be calculated during initialization.
+    :type framework_energy: float or None, optional
+
+    :param adsorbate_energy:
+        Pre-calculated potential energy of the adsorbate molecule in eV. If not provided, it will be calculated during initialization.
+    :type adsorbate_energy: float or None, optional
 
     :param max_translation:
         Maximum translation distance. Default is ``1.5``.
@@ -160,6 +168,8 @@ class GCMC(BaseSimulator):
         device: str,
         vdw_radii: np.ndarray,
         vdw_factor: float = 0.6,
+        framework_energy: float | None = None,
+        adsorbate_energy: float | None = None,
         max_translation: float = 1.5,
         max_rotation: float = np.radians(90),
         max_deltaE: float = 1.555,
@@ -198,6 +208,8 @@ class GCMC(BaseSimulator):
             device=device,
             vdw_radii=vdw_radii,
             vdw_factor=vdw_factor,
+            framework_energy=framework_energy,
+            adsorbate_energy=adsorbate_energy,
             max_deltaE=max_deltaE,
             save_frequency=save_frequency,
             save_rejected=save_rejected,
@@ -411,7 +423,27 @@ class GCMC(BaseSimulator):
 
         self.logger.print_restart_info()
 
-        self.load_state(os.path.join(self.out_folder, "Movies", "Trajectory.traj"))
+        if os.path.exists(os.path.join(self.out_folder, "Movies", "Trajectory.traj")):
+            try:
+                self.load_state(os.path.join(self.out_folder, "Movies", "Trajectory.traj"))
+            except Exception as e:
+                self.logger._print(
+                    "=" * 76
+                    + "\n"
+                    + "WARNING: Error occurred while loading trajectory file:\n"
+                    + str(e)
+                    + "\n"
+                    + "Cannot load the last state of the simulation.\n"
+                    + "This is likely due to empty or corrupted trajectory file.\n"
+                    + "Simulation will start from scratch.\n"
+                    + "=" * 76
+                    + "\n"
+                )
+        else:
+            raise FileNotFoundError(
+                f"ERROR: Trajectory file '{os.path.join(self.out_folder, 'Movies', 'Trajectory.traj')}' does not exist. "
+                + "Cannot load the last state of the simulation."
+            )
 
     def load_state(self, state_file: str) -> None:
         """
@@ -432,9 +464,14 @@ class GCMC(BaseSimulator):
         else:
             state: ase.Atoms = read(state_file)  # type: ignore
 
+        # Workaround to load the labels from Trajectory.info since ASE's Trajectory does not support custom arrays
+        if "labels" in state.info.keys():
+            state.set_array("labels", state.info["labels"])
+
         self.set_state(state)
 
         self.n_adsorbates = int((len(state) - self.n_atoms_framework) / len(self.adsorbate))
+
         average_binding_energy = (
             (
                 self.current_total_energy
@@ -774,6 +811,9 @@ class GCMC(BaseSimulator):
     def _save_state(self, actual_iteration: int) -> None:
 
         if actual_iteration % self.save_every == 0:
+            # Workaround to save the labels in Trajectory.info since ASE's Trajectory does not support custom arrays
+            if "labels" in self.current_system.arrays.keys():
+                self.current_system.info["labels"] = self.current_system.get_array("labels")
 
             self.trajectory.write(self.current_system)  # type: ignore
 
@@ -923,7 +963,7 @@ class GCMC(BaseSimulator):
             overlaped = check_overlap(
                 atoms=temp,
                 group1_indices=np.arange(len(atoms_trial)),
-                group2_indices=np.arange(start=len(atoms_trial), stop=len(temp)),
+                group2_indices=np.arange(len(atoms_trial), stop=len(temp)),
                 vdw_radii=self.vdw,
             )
 
