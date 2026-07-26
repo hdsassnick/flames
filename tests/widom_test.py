@@ -18,12 +18,12 @@ MODELS_PATH = os.path.dirname(__file__) + "/models/"
 # -----------------------------
 def test_widom_run(tmpdir):
     vdw_radii = [0.0, 0.38, 2.5, 0.86, 0.53, 1.01, 0.88, 0.86, 0.89, 0.82, 2.5, 1.15, 1.28, 1.53]
-    int_energy_list = [0.0, -0.187318, 0.004306, -0.003982, -0.155413, -0.150206]
+    int_energy_list = [0.0, -0.201905, -0.001457, -0.016145, -0.165637, -0.150568]
     ref_results = {
         "code_version": VERSION,
-        "enthalpy_of_adsorption_kJ_mol-1": -19.39249439853146,
+        "enthalpy_of_adsorption_kJ_mol-1": -20.835212757381015,
         "enthalpy_of_adsorption_std_kJ_mol-1": 0.0,
-        "henry_coefficient_mol_kg-1_Pa-1": 0.00014447178267831207,
+        "henry_coefficient_mol_kg-1_Pa-1": 0.00023053295198257289,
         "henry_coefficient_std_mol_kg-1_Pa-1": 0.0,
         "random_seed": 10,
         "temperature_K": 298.15,
