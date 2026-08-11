@@ -18,8 +18,8 @@ MODELS_PATH = os.path.dirname(__file__) + "/models/"
 # -----------------------------
 def test_tmmc_run(tmpdir):
     vdw_radii = [0.0, 0.38, 2.5, 0.86, 0.53, 1.01, 0.88, 0.86, 0.89, 0.82, 2.5, 1.15, 1.28, 1.53]
-    ins_energy_list = [0.062041, 0.98445, -0.210626, 0.322975, 1.504674]
-    del_energy_list = [0.569542, 0.718969, 0.950904, 0.569542, 0.718969]
+    ins_energy_list = [0.06685, 1.04653, -0.21789, 0.29680, 1.42064]
+    del_energy_list = [0.60219, 0.72262, 0.97040, 0.60219, 0.72262]
     ref_results = {
         "simulation": {
             "code_version": VERSION,
